@@ -1,9 +1,16 @@
 <script setup>
+
+import {badgeTypes} from './BadgeTypes.js';
     const props = defineProps({
+        attachEvent: {
+            type: Boolean,
+            default: true,
+            required: false
+        },
         type: {
             type: String,
             default: 'primary',
-            validator: (value) => ['primary', 'secondary', 'success', 'danger', 'warning', 'info','married','single'].includes(value)
+            validator: (value) => badgeTypes.includes(value)
         }
     });
 
@@ -14,7 +21,7 @@
 </script>
 
 <template>
-    <div class="badge" :class="`badge-${type}`" @click.self.stop="raiseAlert">
+    <div class="badge" :class="`badge-${type}`" @click.self.stop="attachEvent ? raiseAlert : null">
         <slot></slot>
     </div>
     </template>

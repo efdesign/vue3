@@ -5,7 +5,7 @@ import Name from './components/Name.vue'
 import RedBox from './components/RedBox.vue'
 import Badge from './components/Badge.vue'
 import Flex from './components/Flex.vue'
-
+import EventTester from './components/EventTester.vue'
 
 const aReactivePerson = reactive({
     name: 'Enrico Bianchi',
@@ -112,7 +112,8 @@ const aFunction = (event, customParam) => {
 
         <div v-show="!marriedLocal">
             <RedBox>
-                sorry, you are <Badge type="single">not married</Badge> !
+                sorry, you are <Badge type="single" :attachEvent="true">not married</Badge> !
+                (Event enabled: <Badge type="danger" :attachEvent="false">Click me - No event!</Badge>)
             </RedBox>
         </div>
 
@@ -127,6 +128,8 @@ const aFunction = (event, customParam) => {
 
         </div>
     </Flex>
+
+    <EventTester></EventTester>
 </template>
 
 <style scoped>
