@@ -6,6 +6,7 @@ import RedBox from './components/RedBox.vue'
 import Badge from './components/Badge.vue'
 import Flex from './components/Flex.vue'
 import EventTester from './components/EventTester.vue'
+import Form from './components/Form.vue'
 
 const aReactivePerson = reactive({
     name: 'Enrico Bianchi',
@@ -130,6 +131,8 @@ const aFunction = (event, customParam) => {
     </Flex>
 
     <EventTester></EventTester>
+
+    <Form></Form>
 </template>
 
 <style scoped>
