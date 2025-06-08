@@ -1,5 +1,6 @@
 <script setup lang='ts'>
-// import { useQuery } from '@tanstack/vue-query'
+import { useQuery, useQueryClient } from '@tanstack/vue-query'
+import Loading from './Loading.vue';
 
 
 const getUser = async () => {
@@ -11,20 +12,27 @@ const getUser = async () => {
 };
 
 
+// const fetcher = async (id: number): Promise<Post> =>
+//   await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`).then(
+//     (response) => response.json(),
+//   )
 
-const user = await getUser();
-console.log('getUser', user);
 
-// const { isPending, isFetching, isError, data, error } = useQuery({
-//     queryKey: ['todos'],
-//     queryFn: getTodos,
-// })
+// const user = await getUser();
+// console.log('getUser', user);
+
+
+const queryClient = useQueryClient();
+const { isPending, isFetching, isError, data: user, error } = useQuery({
+    queryKey: ['user'],
+    queryFn: getUser,
+})
 
 
 
 </script>
 <template>
-    <div class="user">
+    <div class="user" v-if="!isPending && !isFetching && !isError && user">
         <h1>User</h1>
         <dl>
             <dt>Name:</dt>
@@ -40,6 +48,8 @@ console.log('getUser', user);
             <dd>{{ user.website }}</dd>
         </dl>
     </div>
+    <Loading v-else-if="isPending || isFetching" />
+
 </template>
 <style scoped>
 .user {
