@@ -1,71 +1,39 @@
 <script setup lang='ts'>
-import { computed, provide, ref } from 'vue';
+import { computed } from 'vue';
 import Panel from './components/Panel/Panel.vue';
-
 import Grid from './components/Grid.vue';
-import type { AppConfig } from './AppConfig';
-import { configKey } from './AppConfig'; // Import the configKey
 import Flex from './components/Flex.vue';
-
 import Layout from './components/Layout.vue';
 import Icon from './components/Icon.vue';
-import type { Ref } from 'vue';
+import { provideAppConfig } from './components/useAppConfig';
+import AsyncHeavy from './components/AsyncHeavy.vue';
 
+// Provide the app configuration to all child components
+const config = provideAppConfig();
 
-
-
-
-const iconSize = 15;
-const panelBackgroundColor = '#f0f0f0';
-const defaultPadding = '1rem';
-const defaultBorderRadius = '2px';
-const defaultBoxShadow = '0 2px 4px rgba(0, 0, 0, 0.1)';
-const toolbarGap = 5;
-const toolbarPadding = 5;
-
-const toolPanelStyle = {
-  backgroundColor: panelBackgroundColor,
-  padding: defaultPadding,
-  borderRadius: defaultBorderRadius,
-  boxShadow: defaultBoxShadow,
+// Create computed styles directly using the config
+const toolPanelStyle = computed(() => ({
+  backgroundColor: config.value.panelBackgroundColor,
+  padding: config.value.defaultPadding,
+  borderRadius: config.value.defaultBorderRadius,
+  boxShadow: config.value.defaultBoxShadow,
   width: '200px',
-};
+}));
 
-const compositionPanelStyle = {
-  backgroundColor: panelBackgroundColor,
-  padding: defaultPadding,
-  borderRadius: defaultBorderRadius,
-  boxShadow: defaultBoxShadow,
+const compositionPanelStyle = computed(() => ({
+  backgroundColor: config.value.panelBackgroundColor,
+  padding: config.value.defaultPadding,
+  borderRadius: config.value.defaultBorderRadius,
+  boxShadow: config.value.defaultBoxShadow,
   width: '400px',
-};
+}));
 
-const toolbarWidth = computed(() => {
-  return ((iconSize * 2) + 10) + (toolbarGap) + (2 * toolbarPadding);
-
-})
-
-const gridToolbarStyle = {
-  boxSizing: 'border-box',
-  backgroundColor: 'rgba(0, 0, 0, 0.2)',
-
-};
-
-
-
-const config: Ref<AppConfig> = ref({
-  iconSize: iconSize,
-  panelBackgroundColor: panelBackgroundColor,
-  defaultPadding: defaultPadding,
-  defaultBorderRadius: defaultBorderRadius,
-  defaultBoxShadow: defaultBoxShadow,
-  toolbarGap: toolbarGap,
-  toolbarPadding: toolbarPadding,
-  toolbarWidth: toolbarWidth.value,
-  gridToolbarStyle: gridToolbarStyle
-});
-
-provide(configKey, config);
-
+// Access config values directly for template usage
+const toolbarWidth = computed(() => config.value.toolbarWidth);
+const toolbarGap = computed(() => config.value.toolbarGap);
+const toolbarPadding = computed(() => config.value.toolbarPadding);
+const gridToolbarStyle = computed(() => config.value.gridToolbarStyle);
+const iconSize = computed(() => config.value.iconSize);
 </script>
 <template>
 
@@ -78,11 +46,11 @@ provide(configKey, config);
         <Flex direction="column" gap="0" align-items="center" justify-content="center">
           <Grid :columns="2" :rows="10" :gap="toolbarGap" :padding="toolbarPadding" :width="toolbarWidth"
             :style="gridToolbarStyle">
-            <Icon name="fi-rr-eye" :size="iconSize" />
-            <Icon name="fi-rr-heart" :size="iconSize" />
-            <Icon name="fi-rr-star" :size="iconSize" />
-            <Icon name="fi-sr-home" :size="iconSize" />
-            <Icon name="fi-brands-github" :size="iconSize" />
+            <Icon name="fi-rr-eye" :size="iconSize" :color="config.iconColor" />
+            <Icon name="fi-rr-heart" :size="iconSize" :colo="config.iconColor" />
+            <Icon name="fi-rr-star" :size="iconSize" :color="config.iconColor" />
+            <Icon name="fi-sr-home" :size="iconSize" :color="config.iconColor" />
+            <Icon name="fi-brands-github" :size="iconSize" :color="config.iconColor" />
           </Grid>
         </Flex>
       </Panel>
@@ -94,8 +62,8 @@ provide(configKey, config);
       </Panel>
     </template>
     <template #panels>
-      <Panel title="Layers" subtitle="reorganize images" :style="toolPanelStyle">
-        <p>Panels content goes here.</p>
+      <Panel title="Layers" subtitle="reorganize images" :style="toolPanelStyle" :is-open="false">
+        <AsyncHeavy flex="1" />
       </Panel>
     </template>
   </Layout>

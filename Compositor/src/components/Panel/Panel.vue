@@ -9,15 +9,17 @@ const props = withDefaults(defineProps<{
     icon?: FlatIconName;
     title?: string;
     subtitle?: string;
+    isOpen?: boolean;
 
 }>(), {
     icon: 'fi-brands-github',
     title: 'Panel Title',
     subtitle: '',
+    isOpen: true,
 
 });
 
-const isOpen = ref(true)
+const isOpen = ref(props.isOpen)
 
 const toggle = () => {
     isOpen.value = !isOpen.value;
@@ -40,6 +42,12 @@ const toggle = () => {
     </div>
 </template>
 <style scoped>
+.panel {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
 .title {
     font-size: 1.2lh;
     line-height: 1.2lh;

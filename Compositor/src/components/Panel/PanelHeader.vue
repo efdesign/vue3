@@ -1,9 +1,8 @@
 <script setup lang='ts'>
-import { inject } from 'vue'
 import Flex from '../Flex.vue';
 import Icon from '../Icon.vue';
 import type { FlatIconName } from '../IconTypes';
-import type { AppConfig } from '../../AppConfig';
+import { useAppConfig } from '../useAppConfig';
 
 const props = defineProps<{
     title?: string;
@@ -13,15 +12,13 @@ const props = defineProps<{
     open?: boolean;
 }>();
 
-const config = inject(configKey);
-
-
+const config = useAppConfig();
 </script>
 <template>
     <Flex direction="row-reverse" alignItems="center" justifyContent="flex-start" gap="10px" padding="5px"
         @click="props.toggle">
-        <Icon v-if="open" name="fi-sr-arrow-up" :size="config." color="#666" />
-        <Icon v-else name="fi-sr-arrow-down" :size="16" color="#666" />
+        <Icon v-if="open" name="fi-sr-arrow-up" :size="config.iconSize" :color="config.iconColor" />
+        <Icon v-else name="fi-sr-arrow-down" :size="config.iconSize" :color="config.iconColor" />
         <slot></slot>
     </Flex>
 </template>
