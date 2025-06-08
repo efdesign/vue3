@@ -8,6 +8,7 @@ import Flex from './components/Flex.vue'
 import EventTester from './components/EventTester.vue'
 import Form from './components/Form.vue'
 
+
 const aReactivePerson = reactive({
     name: 'Enrico Bianchi',
     age: 50,
@@ -118,11 +119,11 @@ const aFunction = (event, customParam) => {
             </RedBox>
         </div>
 
-        <div v-for="(item, index) in chores" :key="item.id" :class="'item'+index">
+        <div v-for="(item, index) in chores" :key="item.id" :class="'item' + index">
             <Flex direction="row" justifyContent="space-evenly" alignItems="center" gap="2ch" width="100%">
                 <!-- {{ item.done ? "Done" : "Not done" }} {{ item.name }} -->
-                <input type="checkbox" v-model="item.done" :name="'input'+index"/>
-                <span>{{ item.name }}</span> - 
+                <input type="checkbox" v-model="item.done" :name="'input' + index" />
+                <span>{{ item.name }}</span> -
                 <span v-if="item.done"> done</span>
                 <span v-else>{{ marriedLocal ? " do it now" : " take it easy" }}</span>
             </Flex>
@@ -133,6 +134,8 @@ const aFunction = (event, customParam) => {
     <EventTester></EventTester>
 
     <Form></Form>
+
+
 </template>
 
 <style scoped>
