@@ -45,15 +45,16 @@ const extractPointerPosition = (event) => {
     };
 };
 
-const method = (event)=>{
+const method = (event) => {
     alert('Hello from RedBox component' + JSON.stringify(dumpCoordinates(event)));
     console.log('Event object:', event);
 }
 </script>
 
+// @click="method($event)"
 <template>
-    <div class="redBorder" @click="method($event)">
-        married container
+    <div class="redBorder">
+        <span>married container</span>
         <slot></slot>
     </div>
 </template>

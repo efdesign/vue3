@@ -7,6 +7,8 @@ import Badge from './components/Badge.vue'
 import Flex from './components/Flex.vue'
 import EventTester from './components/EventTester.vue'
 import Form from './components/Form.vue'
+import EventEmitter from './components/EventEmitter.vue'
+
 
 
 const aReactivePerson = reactive({
@@ -73,6 +75,11 @@ const aFunction = (event, customParam) => {
     // setting value
     // name.value = 'Enrico Bianchi';
 };
+
+const handleRedBoxEvent = (event) => {
+    console.log('RedBox event triggered:', event);
+    alert('RedBox event triggered');
+};
 </script>
 
 <template>
@@ -118,6 +125,11 @@ const aFunction = (event, customParam) => {
                 (Event enabled: <Badge type="danger" :attachEvent="false">Click me - No event!</Badge>)
             </RedBox>
         </div>
+
+        <div>
+            <EventEmitter @redEvent="handleRedBoxEvent" />
+        </div>
+
 
         <div v-for="(item, index) in chores" :key="item.id" :class="'item' + index">
             <Flex direction="row" justifyContent="space-evenly" alignItems="center" gap="2ch" width="100%">
