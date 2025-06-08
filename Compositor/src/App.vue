@@ -7,6 +7,7 @@ import Layout from './components/Layout.vue';
 import Icon from './components/Icon.vue';
 import { provideAppConfig } from './components/useAppConfig';
 import AsyncHeavy from './components/AsyncHeavy.vue';
+import Compositor from './components/Compositor.vue';
 
 // Provide the app configuration to all child components
 const config = provideAppConfig();
@@ -58,7 +59,9 @@ const iconSize = computed(() => config.value.iconSize);
 
     <template #composition>
       <Panel title="Composition" subtitle="Compose your image" :style="compositionPanelStyle">
-        <p>There will be a full compositor component soon here</p>
+        <Suspense>
+          <Compositor />
+        </Suspense>
       </Panel>
     </template>
     <template #panels>
