@@ -10,6 +10,7 @@ import Loading from './Loading.vue'
 import Error from './Error.vue'
 import Badge from './Badge.vue'
 import CustomDirective from './CustomDirective.vue'
+import PictureInPicture from './PictureInPicture.vue'
 
 // Define component names for global registration
 const components = {
@@ -21,7 +22,8 @@ const components = {
   Loading,
   Error,
   Badge,
-  CustomDirective
+  CustomDirective,
+  PictureInPicture
 }
 
 // Main components plugin that installs all components
@@ -44,7 +46,8 @@ export {
   Loading,
   Error,
   Badge,
-  CustomDirective
+  CustomDirective,
+  PictureInPicture
 }
 
 // Export types and utilities inline

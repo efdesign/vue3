@@ -6,6 +6,7 @@ import { provideAppConfig } from './plugins/useAppConfig';
 import AsyncHeavy from './components/AsyncHeavy.vue';
 import Compositor from './components/Compositor.vue';
 import MouseCoordinatesDisplay from './assets/MouseCoordinatesDisplay.vue';
+import PictureInPictureDemo from './components/PictureInPictureDemo.vue';
 
 // Provide the app configuration to all child components
 const config = provideAppConfig();
@@ -72,6 +73,10 @@ const iconSize = computed(() => config.value.iconSize);
       </Panel>
       <Panel title="Custom Direcive" subtitle="Low leve DOM interaction" :style="toolPanelStyle" :is-open="true">
         <CustomDirective />
+      </Panel>
+      <Panel title="Picture-in-Picture Demo" subtitle="Document Picture-in-Picture API" :style="toolPanelStyle"
+        :is-open="true">
+        <PictureInPictureDemo />
       </Panel>
     </template>
   </Layout>
