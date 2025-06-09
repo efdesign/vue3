@@ -28,8 +28,6 @@ const { isPending, isFetching, isError, data: user, error } = useQuery({
     queryFn: getUser,
 })
 
-
-
 </script>
 <template>
     <div class="user" v-if="!isPending && !isFetching && !isError && user">

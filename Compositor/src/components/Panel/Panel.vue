@@ -46,6 +46,7 @@ const toggle = () => {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    color: #333
 }
 
 .title {

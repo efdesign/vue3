@@ -8,6 +8,8 @@ import Icon from './components/Icon.vue';
 import { provideAppConfig } from './components/useAppConfig';
 import AsyncHeavy from './components/AsyncHeavy.vue';
 import Compositor from './components/Compositor.vue';
+import MouseCoordinatesDisplay from './assets/MouseCoordinatesDisplay.vue';
+import CustomDirective from './components/CustomDirective.vue';
 
 // Provide the app configuration to all child components
 const config = provideAppConfig();
@@ -18,7 +20,7 @@ const toolPanelStyle = computed(() => ({
   padding: config.value.defaultPadding,
   borderRadius: config.value.defaultBorderRadius,
   boxShadow: config.value.defaultBoxShadow,
-  width: '200px',
+  width: '300px',
 }));
 
 const compositionPanelStyle = computed(() => ({
@@ -42,7 +44,8 @@ const iconSize = computed(() => config.value.iconSize);
 
   <Layout>
     <template #tools>
-      <Panel title="Tools" subtitle="Available tools" :style="toolPanelStyle">
+      <Panel title="Assets" subtitle="Asset loading, Icon system, configuration, sample styles, computed props"
+        :style="toolPanelStyle">
         <!-- generate 10 random <Icon> components with same size and color, not badges, no IconDemo-->
         <Flex direction="column" gap="0" align-items="center" justify-content="center">
           <Grid :columns="2" :rows="10" :gap="toolbarGap" :padding="toolbarPadding" :width="toolbarWidth"
@@ -58,15 +61,21 @@ const iconSize = computed(() => config.value.iconSize);
     </template>
 
     <template #composition>
-      <Panel title="Composition" subtitle="Compose your image" :style="compositionPanelStyle">
+      <Panel title="Loading" subtitle="Api Call, Tanstack useQuery, Suspense" :style="compositionPanelStyle">
         <Suspense>
           <Compositor />
         </Suspense>
       </Panel>
     </template>
     <template #panels>
-      <Panel title="Layers" subtitle="reorganize images" :style="toolPanelStyle" :is-open="false">
+      <Panel title="Async" subtitle="Async Coponents, Artificial Promise Wait" :style="toolPanelStyle" :is-open="false">
         <AsyncHeavy flex="1" />
+      </Panel>
+      <Panel title="Composable" subtitle="Reusable State, Mouse coordinates" :style="toolPanelStyle" :is-open="true">
+        <MouseCoordinatesDisplay />
+      </Panel>
+      <Panel title="Custom Direcive" subtitle="Low leve DOM interaction" :style="toolPanelStyle" :is-open="true">
+        <CustomDirective />
       </Panel>
     </template>
   </Layout>
