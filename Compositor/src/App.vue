@@ -59,24 +59,38 @@ const iconSize = computed(() => config.value.iconSize);
 
     <template #composition>
       <Panel title="Loading" subtitle="Api Call, Tanstack useQuery, Suspense" :style="compositionPanelStyle">
+
         <Suspense>
+
           <Compositor />
+
         </Suspense>
+
       </Panel>
     </template>
     <template #panels>
-      <Panel title="Async" subtitle="Async Coponents, Artificial Promise Wait" :style="toolPanelStyle" :is-open="false">
+      <Panel title="Async" subtitle="Async Components, Artificial Promise Wait" :style="toolPanelStyle"
+        :is-open="false">
         <AsyncHeavy flex="1" />
       </Panel>
       <Panel title="Composable" subtitle="Reusable State, Mouse coordinates" :style="toolPanelStyle" :is-open="true">
         <MouseCoordinatesDisplay />
       </Panel>
-      <Panel title="Custom Direcive" subtitle="Low leve DOM interaction" :style="toolPanelStyle" :is-open="true">
+      <Panel title="Custom Directive" subtitle="Low level DOM interaction" :style="toolPanelStyle" :is-open="true">
         <CustomDirective />
       </Panel>
-      <Panel title="Picture-in-Picture Demo" subtitle="Document Picture-in-Picture API" :style="toolPanelStyle"
+      <!-- <Panel title="Picture-in-Picture Demo" subtitle="Document Picture-in-Picture API" :style="toolPanelStyle"
         :is-open="true">
         <PictureInPictureDemo />
+      </Panel> -->
+      <Panel title="Teleport" subtitle="Teleport Showcase" :style="toolPanelStyle" :is-open="true">
+        There is conttent below and it will be teleported
+        <Teleport to="#teleport-target">
+          <div class="teleport-demo">
+            <h2>Teleport Example</h2>
+            <p>This content has been teleported to the #teleport-target element.</p>
+          </div>
+        </Teleport>
       </Panel>
     </template>
   </Layout>
