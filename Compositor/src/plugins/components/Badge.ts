@@ -1,11 +1,3 @@
-import type { App } from 'vue'
-import Badge from './Badge.vue'
-
-export const BadgePlugin = {
-  install(app: App) {
-    app.component('Badge', Badge)
-  }
-}
-
-export default BadgePlugin
-export { Badge }
+// This file has been deprecated. 
+// All components are now registered via the main ComponentsPlugin in index.ts
+// Individual component plugins have been removed to simplify the plugin system.

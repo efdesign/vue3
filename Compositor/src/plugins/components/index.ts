@@ -8,7 +8,6 @@ import Icon from './Icon.vue'
 import Layout from './Layout.vue'
 import Loading from './Loading.vue'
 import Error from './Error.vue'
-
 import Badge from './Badge.vue'
 import CustomDirective from './CustomDirective.vue'
 
@@ -21,66 +20,8 @@ const components = {
   Layout,
   Loading,
   Error,
-  
   Badge,
   CustomDirective
-}
-
-// Individual component plugins
-export const PanelPlugin = {
-  install(app: App) {
-    app.component('Panel', Panel)
-  }
-}
-
-export const FlexPlugin = {
-  install(app: App) {
-    app.component('Flex', Flex)
-  }
-}
-
-export const GridPlugin = {
-  install(app: App) {
-    app.component('Grid', Grid)
-  }
-}
-
-export const IconPlugin = {
-  install(app: App) {
-    app.component('Icon', Icon)
-  }
-}
-
-export const LayoutPlugin = {
-  install(app: App) {
-    app.component('Layout', Layout)
-  }
-}
-
-export const LoadingPlugin = {
-  install(app: App) {
-    app.component('Loading', Loading)
-  }
-}
-
-export const ErrorPlugin = {
-  install(app: App) {
-    app.component('Error', Error)
-  }
-}
-
-
-
-export const BadgePlugin = {
-  install(app: App) {
-    app.component('Badge', Badge)
-  }
-}
-
-export const CustomDirectivePlugin = {
-  install(app: App) {
-    app.component('CustomDirective', CustomDirective)
-  }
 }
 
 // Main components plugin that installs all components
@@ -102,11 +43,34 @@ export {
   Layout,
   Loading,
   Error,
-  
   Badge,
   CustomDirective
 }
 
-// Export types and utilities will be added later
-// export { badgeTypes, type BadgeType } from './BadgeTypes'
-// export type { FlatIconRegular, FlatIconSolid, FlatIconBrands, FlatIconType } from './IconTypes'
+// Export types and utilities inline
+// Badge types
+export const badgeTypes = [
+  'primary', 
+  'secondary', 
+  'success', 
+  'danger', 
+  'warning', 
+  'info', 
+  'light', 
+  'dark', 
+  'married', 
+  'single'
+] as const;
+
+export type BadgeType = typeof badgeTypes[number];
+
+// Icon types (basic subset for now)
+export type FlatIconRegular = 
+  | 'fi-rr-eye' | 'fi-rr-eye-crossed' | 'fi-rr-heart' | 'fi-rr-star'
+  | 'fi-rr-home' | 'fi-rr-user' | 'fi-rr-users' | 'fi-rr-settings'
+  | 'fi-rr-search' | 'fi-rr-menu-burger' | 'fi-rr-menu-dots'
+  | 'fi-rr-cross' | 'fi-rr-check' | 'fi-rr-plus' | 'fi-rr-minus';
+
+export type FlatIconSolid = string;
+export type FlatIconBrands = string;
+export type FlatIconType = FlatIconRegular | FlatIconSolid | FlatIconBrands;

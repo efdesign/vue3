@@ -5,46 +5,25 @@ import App from '../App.vue'
 // Different ways to use the Compositor plugins
 // ========================================
 
-// Method 1: Install all components and composables at once (Recommended)
+// Method 1: Install all components at once (Recommended)
 import CompositorPlugin from './index'
 
 const app1 = createApp(App)
 app1.use(CompositorPlugin)
 // Now all components are globally available:
-// Panel, Flex, Grid, Icon, Layout, Loading, Error, Barge, Badge, CustomDirective
-// And composables are available via injection or global properties
+// Panel, Flex, Grid, Icon, Layout, Loading, Error, Badge, CustomDirective
 
 // ========================================
 
-// Method 2: Install plugins selectively
-import { 
-  ComponentsPlugin,
-  ComposablesPlugin
-} from './index'
-
-import { 
-  PanelPlugin, 
-  FlexPlugin, 
-  GridPlugin, 
-  IconPlugin,
-  BadgePlugin,
-  BargePlugin
-} from './components'
+// Method 2: Install only the components plugin
+import { ComponentsPlugin } from './index'
 
 const app2 = createApp(App)
-app2.use(ComponentsPlugin) // All components
-app2.use(ComposablesPlugin) // All composables
-// OR individually:
-app2.use(PanelPlugin)
-app2.use(FlexPlugin)
-app2.use(GridPlugin)
-app2.use(IconPlugin)
-app2.use(BadgePlugin)
-app2.use(BargePlugin)
+app2.use(ComponentsPlugin) // All components globally registered
 
 // ========================================
 
-// Method 3: Import components and composables directly
+// Method 3: Import components and composables directly (without global registration)
 import { 
   Panel, 
   Flex, 
@@ -53,7 +32,6 @@ import {
   Layout, 
   Loading, 
   Error, 
-  Barge, 
   Badge, 
   CustomDirective 
 } from './components'
@@ -67,17 +45,33 @@ export default {
     Flex,
     Grid,
     Icon,
+    Layout,
+    Loading,
+    Error,
     Badge,
-    Barge
+    CustomDirective
+  },
+  setup() {
+    // Use composables directly
+    const mousePos = useMouseCoordinates()
+    
+    return {
+      mousePos
+    }
   }
 }
 
-export {
-  CompositorPlugin,
-  PanelPlugin,
-  FlexPlugin,
-  GridPlugin,
-  IconPlugin,
-  BadgePlugin,
-  BargePlugin
-}
+// ========================================
+// Type exports
+// ========================================
+
+// Import types for use in your components
+import type { BadgeType } from './components'
+import type { FlatIconRegular, FlatIconType } from './components'
+
+// Example usage:
+const badgeType: BadgeType = 'primary'
+const iconName: FlatIconRegular = 'fi-rr-home'
+
+// Export simplified plugin
+export { CompositorPlugin }

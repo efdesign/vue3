@@ -1,11 +1,3 @@
-import type { App } from 'vue'
-import CustomDirective from './CustomDirective.vue'
-
-export const CustomDirectivePlugin = {
-  install(app: App) {
-    app.component('CustomDirective', CustomDirective)
-  }
-}
-
-export default CustomDirectivePlugin
-export { CustomDirective }
+// This file has been deprecated. 
+// All components are now registered via the main ComponentsPlugin in index.ts
+// Individual component plugins have been removed to simplify the plugin system.
