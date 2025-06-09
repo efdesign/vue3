@@ -1,7 +1,5 @@
 <script setup lang='ts'>
 import { defineAsyncComponent } from 'vue';
-import Loading from './Loading.vue';
-import Error from './Error.vue';
 const HeavyComponent = defineAsyncComponent({
     // This component is intentionally heavy and complex.
     // It can include multiple nested components, complex logic, and more.
@@ -10,8 +8,8 @@ const HeavyComponent = defineAsyncComponent({
         import('./Heavy.vue'),
         new Promise(resolve => setTimeout(resolve, 5000)) // 5 seconds delay to simulate a heavy load
     ]).then(([module]) => module), // Return only the module, discard the timeout promise
-    loadingComponent: Loading,
-    errorComponent: Error,
+    loadingComponent: () => import('../plugins/components/Loading.vue'),
+    errorComponent: () => import('../plugins/components/Error.vue'),
     delay: 0,
     timeout: 10000,
 }

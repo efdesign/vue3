@@ -1,15 +1,11 @@
 <script setup lang='ts'>
 import { computed } from 'vue';
-import Panel from './components/Panel/Panel.vue';
-import Grid from './components/Grid.vue';
-import Flex from './components/Flex.vue';
-import Layout from './components/Layout.vue';
-import Icon from './components/Icon.vue';
-import { provideAppConfig } from './components/useAppConfig';
+// Components are now globally available through the plugin system
+// No need to import Panel, Grid, Flex, Layout, Icon, CustomDirective anymore
+import { provideAppConfig } from './plugins/useAppConfig';
 import AsyncHeavy from './components/AsyncHeavy.vue';
 import Compositor from './components/Compositor.vue';
 import MouseCoordinatesDisplay from './assets/MouseCoordinatesDisplay.vue';
-import CustomDirective from './components/CustomDirective.vue';
 
 // Provide the app configuration to all child components
 const config = provideAppConfig();

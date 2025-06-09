@@ -1,6 +1,7 @@
 <script setup lang='ts'>
-import Icon from './Icon.vue';
-import { useAppConfig } from './useAppConfig';
+// Icon component is now globally available through the plugin system
+// useAppConfig is imported from the main plugins folder
+import { useAppConfig } from '../useAppConfig';
 const config = useAppConfig();
 // https://www.svgbackgrounds.com/elements/animated-svg-preloaders/
 </script>

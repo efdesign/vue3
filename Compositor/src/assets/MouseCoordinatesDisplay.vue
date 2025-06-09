@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import { useMouseCoordinates } from '@/components/composables/useMouseCoordinates';
+import { useMouseCoordinates } from '@/plugins/index';
 const { mouseX, mouseY } = useMouseCoordinates();
 </script>
 <template>

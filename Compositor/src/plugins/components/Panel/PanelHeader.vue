@@ -2,7 +2,7 @@
 import Flex from '../Flex.vue';
 import Icon from '../Icon.vue';
 import type { FlatIconName } from '../IconTypes';
-import { useAppConfig } from '../useAppConfig';
+import { useAppConfig } from '../../useAppConfig';
 
 const props = defineProps<{
     title?: string;

@@ -1,5 +1,10 @@
 import { ref, onMounted, onUnmounted } from 'vue';
-export const useMouseCoordinates = () => {
+
+/**
+ * Composable for tracking mouse coordinates in real-time
+ * @returns {Object} Object containing reactive mouseX and mouseY coordinates
+ */
+export function useMouseCoordinates() {
   const mouseX = ref(0);
   const mouseY = ref(0);
 

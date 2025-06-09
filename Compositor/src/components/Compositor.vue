@@ -1,6 +1,5 @@
 <script setup lang='ts'>
 import { useQuery, useQueryClient } from '@tanstack/vue-query'
-import Loading from './Loading.vue';
 
 
 const getUser = async () => {

@@ -1,10 +1,5 @@
 <script setup lang='ts'>
-import Flex from './Flex.vue';
-import Icon from './Icon.vue';
-import Panel from './Panel/Panel.vue';
-import Badge from './Badge.vue';
-import Grid from './Grid.vue';
-import { useAppConfig } from './useAppConfig';
+import { useAppConfig } from '../plugins/useAppConfig';
 const config = useAppConfig();
 </script>
 <template>
