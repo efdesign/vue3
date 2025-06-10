@@ -1,6 +1,5 @@
 <script setup lang='ts'>
 import { useAppStore } from '@/store/store';
-import type { RefSymbol } from '@vue/reactivity';
 import { ref } from 'vue';
 
 const store = useAppStore();
