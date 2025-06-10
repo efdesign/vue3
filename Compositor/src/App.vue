@@ -8,9 +8,11 @@ import Compositor from './components/Compositor.vue';
 import MouseCoordinatesDisplay from './assets/MouseCoordinatesDisplay.vue';
 import PictureInPictureDemo from './components/PictureInPictureDemo.vue';
 
+
+import { useAppStore } from './store/store';
 // Provide the app configuration to all child components
 const config = provideAppConfig();
-
+const store = useAppStore();
 // Create computed styles directly using the config
 const toolPanelStyle = computed(() => ({
   backgroundColor: config.value.panelBackgroundColor,
@@ -34,6 +36,28 @@ const toolbarGap = computed(() => config.value.toolbarGap);
 const toolbarPadding = computed(() => config.value.toolbarPadding);
 const gridToolbarStyle = computed(() => config.value.gridToolbarStyle);
 const iconSize = computed(() => config.value.iconSize);
+
+const updateStateDirect = (event: MouseEvent) => {
+  console.log('updateState called with event:', event);
+  store.appName = 'Nice App';
+  store.appVersion = '1.1.18';
+};
+
+const patchState = (event: MouseEvent) => {
+  console.log('patchState called with event:', event);
+  store.$patch({
+    appName: 'Patch State App',
+    appVersion: '2.2.18',
+  });
+};
+
+const updateStateFunction = (event: MouseEvent) => {
+  console.log('updateStateFunction called with event:', event);
+  store.$patch((state) => {
+    state.appName = 'Function State App';
+    state.appVersion = '2.3.18';
+  });
+};
 </script>
 <template>
 
@@ -89,6 +113,19 @@ const iconSize = computed(() => config.value.iconSize);
           <div class="teleport-demo">
             <h2>Teleport Example</h2>
             <p>This content has been teleported to the #teleport-target element.</p>
+
+
+            <h3>State management (Pinia) Example</h3>
+            <p>for app: {{ store.appName }} version:
+              {{
+                store.appVersion
+              }}</p>
+            <button @click="store.incrementVersion()">Increment Counter</button>
+            <button @click="store.$reset()">Reset Store</button>
+
+            <button @click="($event) => updateStateDirect($event,)">updateState direct</button>
+            <button @click="($event) => patchState($event)">patchState with event</button>
+            <button @click="($event) => updateStateFunction($event)">updateState function</button>
           </div>
         </Teleport>
       </Panel>
