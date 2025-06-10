@@ -10,6 +10,7 @@ import PictureInPictureDemo from './components/PictureInPictureDemo.vue';
 
 
 import { useAppStore } from './store/store';
+import StoreWatcher from './components/StoreWatcher.vue';
 // Provide the app configuration to all child components
 const config = provideAppConfig();
 const store = useAppStore();
@@ -103,6 +104,11 @@ const updateStateFunction = (event: MouseEvent) => {
       <Panel title="Custom Directive" subtitle="Low level DOM interaction" :style="toolPanelStyle" :is-open="true">
         <CustomDirective />
       </Panel>
+
+      <Panel title="Store Watcher" subtitle="he's looking!" :style="toolPanelStyle" :is-open="true">
+        <StoreWatcher />
+      </Panel>
+
       <!-- <Panel title="Picture-in-Picture Demo" subtitle="Document Picture-in-Picture API" :style="toolPanelStyle"
         :is-open="true">
         <PictureInPictureDemo />
